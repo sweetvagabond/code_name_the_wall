@@ -11,7 +11,11 @@ Rantcat::Application.routes.draw do
   # post 'posts/index', to: 'posts#create', as: :posts
   post 'users/show', to: 'posts#create', as: :user_posts
   # post 'users/show', to: 'users#show', as: :userposts
-resources :users, except: [:destroy]
+resources :users, except: [:destroy] do
+  member do
+    get :following, :follewers
+  end
+end
 
 resources :posts, shallow: true do
   resources :posts
@@ -19,6 +23,9 @@ end
 # resources :posts
 resources :sessions, except: [:destroy]
 
+
+
+resources :friendships
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -17,23 +17,32 @@
 	<% end %>
 </div>
 
-	<% @posts.each do |post| %>
-		
-			<% print_tree(post, nil, 0).each do |a_post| %>
-				<%= a_post %>
-			<% end %>
+<% @posts.each do |post| %>
+	
+		<% print_tree(post, nil, 0).each do |a_post| %>
+			<%= a_post %>
+			<!--ADD IF STATEMENT FOR FOLLOW BUTTONG -->
+			<%= form_for(current_user.friendships.build(followed_id: post.user_id),
+			             remote: true) do |f| %>
+			  <div><%= f.hidden_field :followed_id %>
+			  	<%= f.submit "Follow" %>
+			  </div>
+			<% end %>			
 
-			<%# @posts.each do |comment| %> 
-			<!-- <div class="comments"> -->
+		<% end %>
 
-				<%# if post.id == comment.post_id %> <!-- compare the orginal post's id, with the comment(post)'s post_id -->
-					<!-- <%#= comment.post %></br> -->
-					<!-- <%#= comment.post_id %></br> -->
-				<%# end %>
-			<!-- </div> -->
+		<%# @posts.each do |comment| %> 
+		<!-- <div class="comments"> -->
+
+			<%# if post.id == comment.post_id %> <!-- compare the orginal post's id, with the comment(post)'s post_id -->
+				<!-- <%#= comment.post %></br> -->
+				<!-- <%#= comment.post_id %></br> -->
 			<%# end %>
+		<!-- </div> -->
+		<%# end %>
 
-	<% end %>
+<% end %>
+
 
 
 

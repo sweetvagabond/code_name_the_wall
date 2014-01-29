@@ -26,8 +26,15 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	def follow!(followed)
+		# relationships.create!(followed_id: followed.id)
 		friendships.create!(followed_id: followed.id)
 	end
+
+	def following?(followed)
+		friendships.find_by(followed_id: followed.id)
+	end
+
+
 
 end
 
