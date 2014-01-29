@@ -1,0 +1,16 @@
+<h1>User Profile</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<p>Post</p>
+<%= simple_form_for @post, url: posts_path do |p| %>
+	<%= p.input :post, label: ""%>
+	<%= p.button :submit %>
+<% end %>
+
+<% @userposts.each do |post| %>
+
+<%= post.post %></br>
+
+<% end %>
+
+<%= link_to "sign_out", signout_path, method: "delete" %>

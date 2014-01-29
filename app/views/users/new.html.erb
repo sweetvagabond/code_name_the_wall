@@ -1,0 +1,19 @@
+<h1>Hi, bitches. Rant away</h1>
+<p>Register</p>
+
+
+<%= simple_form_for @user do |formfield| %>
+	<%= formfield.input :username, label: "Username:" %>
+	<%= formfield.input :password, label: "Password:" %>
+	<%= formfield.input :password_confirmation, label: "Confirm Password:" %>
+	<%= formfield.button :submit %>
+<% end %>	
+
+<p>Login</p>
+<%= simple_form_for(:session, url: sessions_path) do |f| %>
+	<%= f.input :username, label: "Username:" %>
+	<%= f.input :password, label: "Password:" %>
+	<%= f.button :submit %>
+<% end %>	
+ 
+

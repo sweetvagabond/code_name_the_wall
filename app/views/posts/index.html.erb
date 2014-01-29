@@ -1,0 +1,46 @@
+<h1>rantcat</h1>
+
+<div class="mainbox">
+	<p>MAIN POST BOX</p>
+
+	<% test_print.each do |s| %>
+		<%= s %>
+	<% end %>
+
+
+	<% if signed_in? %>
+		<%= simple_form_for @post do |p| %>
+			
+			<%= p.input :post, label: false %>
+			<%= p.button :submit, value: "Rant" %>
+		<% end %>
+	<% end %>
+</div>
+
+	<% @posts.each do |post| %>
+		
+			<% print_tree(post, nil, 0).each do |a_post| %>
+				<%= a_post %>
+			<% end %>
+
+			<%# @posts.each do |comment| %> 
+			<!-- <div class="comments"> -->
+
+				<%# if post.id == comment.post_id %> <!-- compare the orginal post's id, with the comment(post)'s post_id -->
+					<!-- <%#= comment.post %></br> -->
+					<!-- <%#= comment.post_id %></br> -->
+				<%# end %>
+			<!-- </div> -->
+			<%# end %>
+
+	<% end %>
+
+
+
+
+<% if signed_in? %>
+	<%= link_to "sign_out", signout_path, method: "delete" %>
+	<%= link_to "user", user_path(current_user), method: "get" %>
+<% else %>
+	<%= link_to "sign_in", signin_path, method: "get" %>
+<% end %>
