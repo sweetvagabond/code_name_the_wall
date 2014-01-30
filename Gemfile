@@ -42,7 +42,6 @@ gem 'simple_form'
 gem 'bcrypt-ruby', '~> 3.1.2'
 
 # JQuery
-gem 'jquery-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -52,3 +51,9 @@ gem 'jquery-rails'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+  gem 'twitter-bootstrap-rails'
+  gem "therubyracer"
+  gem "less-rails"
+

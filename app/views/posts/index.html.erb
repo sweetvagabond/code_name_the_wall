@@ -1,35 +1,51 @@
-<h1>rantcat</h1>
-
-<div class="mainbox">
-	<p>MAIN POST BOX</p>
-
-	<% test_print.each do |s| %>
-		<%= s %>
-	<% end %>
-
-
 	<% if signed_in? %>
-		<%= simple_form_for @post do |p| %>
-			
-			<%= p.input :post, label: false %>
-			<%= p.button :submit, value: "Rant" %>
-		<% end %>
+		<%= link_to "sign_out", signout_path, method: "delete" %> 
+		<%= link_to "user", user_path(current_user), method: "get" %>
+	<% else %>
+		<%= link_to "sign_in", signin_path, method: "get" %>
 	<% end %>
-</div>
 
-<% @posts.each do |post| %>
-	
-		<% print_tree(post, nil, 0).each do |a_post| %>
-			<%= a_post %>
-			<!--ADD IF STATEMENT FOR FOLLOW BUTTONG -->
-			<%= form_for(current_user.friendships.build(followed_id: post.user_id),
-			             remote: true) do |f| %>
-			  <div><%= f.hidden_field :followed_id %>
-			  	<%= f.submit "Follow" %>
-			  </div>
-			<% end %>			
+	<div class="mainbox">
 
+		<p>MAIN POST BOX</p>
+
+		<% if signed_in? %>
+			<%= simple_form_for @post do |p| %>
+				
+				<%= p.input :post, label: false %>
+				<%= p.button :submit, value: "Rant" %>
+			<% end %>
 		<% end %>
+	</div>
+
+
+
+
+	<% @posts.each do |post| %>
+		<% print_tree(post, nil, 0).each do |a_post| %>
+			<div class = "comments">
+				<%= a_post %>
+						<!-- <button>Comment</button> -->
+			<!-- <p style="display: none">akdj;alkjdf;lkajd</p> -->
+			
+
+
+				
+
+				<!--ADD IF STATEMENT FOR FOLLOW BUTTON -->
+				<%# if signed_in? %>
+				<%#= form_for(current_user.friendships.build(followed_id: post.user_id),
+					             remote: true) do |f| %>
+					<!-- <div> -->
+						<%#= f.hidden_field :followed_id %>
+						<%#= f.submit "Follow" %>
+					<!-- </div> -->
+				<%# end %>	
+			</div>			
+			<%# end %>		
+		<% end %>
+
+
 
 		<%# @posts.each do |comment| %> 
 		<!-- <div class="comments"> -->
@@ -41,15 +57,20 @@
 		<!-- </div> -->
 		<%# end %>
 
-<% end %>
+	<% end %>
+				<script>
+
+					$(document).on("page:change", function(){
+						$(".comment_form").hide();
+						// $("button").click(function(){
+						// 	$(this).next("p").toggle();
+						// 	alert($(this).next("p").text());
+						// 	// $("p").toggle();
+						// });
+					$(".show_comment").click(function(){
+						$(this).prev(".comment_form").toggle();
+					})
+					})
 
 
-
-
-
-<% if signed_in? %>
-	<%= link_to "sign_out", signout_path, method: "delete" %>
-	<%= link_to "user", user_path(current_user), method: "get" %>
-<% else %>
-	<%= link_to "sign_in", signin_path, method: "get" %>
-<% end %>
+				</script>

@@ -9,7 +9,31 @@
 </head>
 <body>
 
-<%= yield %>
+	<%= yield %>
+
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
+	      <a class="brand" href="#">RANTCAT</a>
+	      <div class="nav-collapse">
+	        <ul class="nav">
+		        <% if signed_in? %>	
+		          <li><%= link_to "Sign out", signout_path, method: "delete" %> </li>
+		          <li><%= link_to "Profile", user_path(current_user), method: "get" %></li>
+		           <li><%= link_to "The Wall", home_path, method: "get" %></li>
+		        <% else %>
+		          <li><%= link_to "Sign in", signin_path, method: "get" %></li>
+		        <% end %>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 </body>
 </html>

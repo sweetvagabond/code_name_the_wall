@@ -2,10 +2,12 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <p>Post</p>
-<%= simple_form_for @post, url: posts_path do |p| %>
-	<%= p.input :post, label: ""%>
-	<%= p.button :submit %>
-<% end %>
+	<% if current_user == @user %>
+		<%= simple_form_for @post, url: posts_path do |p| %>
+			<%= p.input :post, label: ""%>
+			<%= p.button :submit %>
+		<% end %>
+	<% end %>
 
 <% @userposts.each do |post| %>
 
